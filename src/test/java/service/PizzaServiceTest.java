@@ -12,23 +12,16 @@ import pizzashop.service.PizzaService;
 import java.util.stream.Stream;
 
 class PizzaServiceTest {
-    private int table;
-    private double amount;
     private final PaymentType paymentType=PaymentType.Card;
-    private PizzaService pizzaService;
-    @BeforeEach
-    void setUp() {
-        pizzaService=new PizzaService(new MenuRepository(), new PaymentRepository());
-        table=10;
-        amount=20.25;
-    }
+    private PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
 
     @Test
     @DisplayName("TEST 1")
     @Tag("my-tag")
     void addPaymentAllParamsAreGoodECP() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
-        pizzaService.addPayment(table,paymentType,amount);
+        pizzaService.addPayment(10,paymentType,20.25);
         assert (size==pizzaService.getPayments().size()-1);
     }
 
@@ -36,9 +29,10 @@ class PizzaServiceTest {
     @DisplayName("TEST 2")
     @Tag("my-tag")
     void addPaymentWrongValueTableECP() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         try {
-            pizzaService.addPayment(Integer.parseInt("value"), paymentType, amount);
+            pizzaService.addPayment(Integer.parseInt("value"), paymentType, 20.25);
         } catch (NumberFormatException e) {
             assert (size == pizzaService.getPayments().size());
         }
@@ -52,9 +46,10 @@ class PizzaServiceTest {
             "banana",
     })
     void addPaymentWrongValueAmountECP(String value) {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         try {
-            pizzaService.addPayment(table, paymentType, Double.parseDouble(value));
+            pizzaService.addPayment(10, paymentType, Double.parseDouble(value));
         } catch (NumberFormatException e) {
             assert (size == pizzaService.getPayments().size());
         }
@@ -82,7 +77,7 @@ class PizzaServiceTest {
     @Tag("my-tag")
     void addPaymentWrongValueTableBVA_1() {
         int size=pizzaService.getPayments().size();
-        pizzaService.addPayment(21,paymentType,amount);
+        pizzaService.addPayment(21,paymentType,20.25);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
     }
 
@@ -91,7 +86,7 @@ class PizzaServiceTest {
     @Tag("my-tag")
     void addPaymentWrongValueTableBVA_2() {
         int size=pizzaService.getPayments().size();
-        pizzaService.addPayment(-1,paymentType,amount);
+        pizzaService.addPayment(-1,paymentType,20.25);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
     }
 
@@ -100,7 +95,7 @@ class PizzaServiceTest {
     @Tag("my-tag")
     void addPaymentWrongValueAmountBVA_1() {
         int size=pizzaService.getPayments().size();
-        pizzaService.addPayment(table, paymentType, -1.0);
+        pizzaService.addPayment(10, paymentType, -1.0);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
     }
 
@@ -109,7 +104,7 @@ class PizzaServiceTest {
     @Tag("my-tag")
     void addPaymentWrongValueAmountBVA_2() {
         int size=pizzaService.getPayments().size();
-        pizzaService.addPayment(table, paymentType, 0);
+        pizzaService.addPayment(10, paymentType, 0);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
     }
 }

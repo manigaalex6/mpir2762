@@ -1,6 +1,5 @@
 package pizzashop.service;
 
-import org.junit.jupiter.api.Test;
 import pizzashop.model.MenuDataModel;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
