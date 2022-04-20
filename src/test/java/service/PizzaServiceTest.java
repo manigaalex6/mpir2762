@@ -1,9 +1,10 @@
-package pizzashop.service;
+package service;
 
 import org.junit.jupiter.api.Test;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.MenuRepository;
 import pizzashop.repository.PaymentRepository;
+import pizzashop.service.PizzaService;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

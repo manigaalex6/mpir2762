@@ -1,9 +1,10 @@
-package pizzashop.service;
+package service;
 
 import org.junit.jupiter.api.Test;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
 import pizzashop.repository.PaymentRepository;
+import pizzashop.service.PizzaService;
 
 import java.util.Arrays;
 import java.util.List;

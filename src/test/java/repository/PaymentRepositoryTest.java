@@ -1,4 +1,4 @@
-package pizzashop.repository;
+package repository;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -6,6 +6,7 @@ import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 import pizzashop.model.Payment;
 import pizzashop.model.PaymentType;
+import pizzashop.repository.PaymentRepository;
 
 import java.util.Arrays;
 
