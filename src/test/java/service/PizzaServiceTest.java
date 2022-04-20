@@ -12,17 +12,24 @@ import pizzashop.service.PizzaService;
 import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 class PizzaServiceTest {
 
     @Test
     void validTotalAmount() {
-        assertEquals(1, 1);
+        final PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
+
+        double totalAmount = pizzaService.getTotalAmount(PaymentType.Card);
+        assertEquals(201.25, totalAmount);
     }
 
     @Test
     void invalidTotalAmount() {
-        assertEquals(1, 1);
+        final PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
+
+        double totalAmount = pizzaService.getTotalAmount(PaymentType.Card);
+        assertNotEquals(-1.0, totalAmount);
     }
 //    private final PaymentType paymentType=PaymentType.Card;
 //
