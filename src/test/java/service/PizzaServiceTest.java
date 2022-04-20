@@ -13,11 +13,8 @@ import java.util.stream.Stream;
 
 class PizzaServiceTest {
     private final PaymentType paymentType=PaymentType.Card;
-    private PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
 
     @Test
-    @DisplayName("TEST 1")
-    @Tag("my-tag")
     void addPaymentAllParamsAreGoodECP() {
         PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
@@ -60,6 +57,7 @@ class PizzaServiceTest {
     @ParameterizedTest
     @MethodSource("valuesProvider")
     void addPaymentWrongValuesECP(String value) {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         try {
             pizzaService.addPayment(Integer.parseInt(value), paymentType, Double.parseDouble(value));
@@ -76,6 +74,7 @@ class PizzaServiceTest {
     @DisplayName("TEST 5")
     @Tag("my-tag")
     void addPaymentWrongValueTableBVA_1() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         pizzaService.addPayment(21,paymentType,20.25);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
@@ -85,6 +84,7 @@ class PizzaServiceTest {
     @DisplayName("TEST 6")
     @Tag("my-tag")
     void addPaymentWrongValueTableBVA_2() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         pizzaService.addPayment(-1,paymentType,20.25);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
@@ -94,6 +94,7 @@ class PizzaServiceTest {
     @DisplayName("TEST 7")
     @Tag("my-tag")
     void addPaymentWrongValueAmountBVA_1() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         pizzaService.addPayment(10, paymentType, -1.0);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
@@ -103,6 +104,7 @@ class PizzaServiceTest {
     @DisplayName("TEST 8")
     @Tag("my-tag")
     void addPaymentWrongValueAmountBVA_2() {
+        PizzaService pizzaService = new PizzaService(new MenuRepository(), new PaymentRepository());
         int size=pizzaService.getPayments().size();
         pizzaService.addPayment(10, paymentType, 0);
         assert (size==pizzaService.getPayments().size()); //am gasit un bug
